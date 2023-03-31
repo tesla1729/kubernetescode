@@ -2,7 +2,7 @@ pipeline {
   agent { any }
   stages {
     stage('Clone repository') {      
-        checkout scm
+        checkout scmGit(branches: [[name: '**']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/tesla1729/kubernetescode.git']])
     }
     stage('Build image') {
        app = docker.build("teslaraj950/test")
