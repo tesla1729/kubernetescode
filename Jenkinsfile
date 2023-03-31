@@ -1,15 +1,5 @@
 pipeline {
-  agent {
-    kubernetes {
-      label 'docker-builder'
-      containerTemplate {
-        name 'docker'
-        image 'docker:20.10.8'
-        command 'cat'
-        ttyEnabled true
-      }
-    }
-  }
+  agent { any }
   stages {
     stage('Clone repository') {      
         checkout scm
