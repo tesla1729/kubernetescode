@@ -18,15 +18,11 @@ agent {
         }
       }
     }  
-    stage('Build-Docker-Image') {
-      steps {
-        container('docker') {
-          script {
-          dockerImage = docker.build teslaraj950/testing-image:latest
+    stage('Build') {
+            steps {
+                sh 'docker build -t testing-image:latest -t testing-image:$BUILD_NUMBER .'
+            }
         }
-        }
-      }
-    }
     stage('Login-Into-Docker') {
       steps {
         container('docker') {
@@ -38,6 +34,7 @@ agent {
       steps {
         container('docker') {
           sh 'docker push teslaraj950/testing-image:latest'
+          sh 'docker push teslaraj950/testing-image:$BUILD_NUMBER'
       }
     }
      }
