@@ -32,27 +32,11 @@ agent {
           sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
           sh 'docker push teslaraj950/testing-image:${BUILD_NUMBER}'
           sh 'docker push teslaraj950/testing-image:latest'
-        }}
+        }
+        }
       }
     }
-    stage('Login-Into-Docker') {
-      steps {
-        container('docker') {
-                withRegistry('https://registry.hub.docker.com', 'dockerhub') {    
-          sh 'docker push teslaraj950/testing-image:latest'
-          sh 'docker push teslaraj950/testing-image:$BUILD_NUMBER'
-      }
-        }}
-    }
-     stage('Push-Images-Docker-to-DockerHub') {
-      steps {
-        container('docker') {
-          sh 'docker push teslaraj950/testing-image:latest'
-          sh 'docker push teslaraj950/testing-image:$BUILD_NUMBER'
-      }
-    }
-     }
-  }
+    
     post {
       always {
         container('docker') {
