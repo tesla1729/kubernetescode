@@ -26,9 +26,9 @@ agent {
   stages {
     stage('Clone') {
       steps {
-        {
+        
           git branch: 'main', changelog: false, poll: false, url: 'https://github.com/tesla1729/kubernetescode.git'
-        }
+        
       }
     }  
     stage('Build') {
