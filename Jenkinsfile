@@ -21,7 +21,9 @@ agent {
     stage('Build-Docker-Image') {
       steps {
         container('docker') {
-          sh 'docker build -t teslaraj950/testing-image:latest .'
+          script {
+          dockerImage = docker.build teslaraj950/testing-image:latest
+        }
         }
       }
     }
