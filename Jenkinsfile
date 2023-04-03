@@ -28,7 +28,7 @@ agent {
     stage('Login-Into-Docker') {
       steps {
         container('docker') {
-                docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {    
+                withRegistry('https://registry.hub.docker.com', 'dockerhub') {    
           sh 'docker push teslaraj950/testing-image:latest'
           sh 'docker push teslaraj950/testing-image:$BUILD_NUMBER'
       }
