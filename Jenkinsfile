@@ -32,21 +32,21 @@ pipeline {
     stage('Build-Docker-Image') {
       steps {
         container('docker') {
-          sh 'docker build -t ss69261/testing-image:latest .'
+          sh 'docker build -t teslaraj950/testing-image:latest .'
         }
       }
     }
     stage('Login-Into-Docker') {
       steps {
         container('docker') {
-          sh 'docker login -u <docker_username> -p <docker_password>'
+          sh 'docker login -u teslaraj950 -p Tesla@123'
       }
     }
     }
      stage('Push-Images-Docker-to-DockerHub') {
       steps {
         container('docker') {
-          sh 'docker push ss69261/testing-image:latest'
+          sh 'docker push teslaraj950/testing-image:latest'
       }
     }
      }
