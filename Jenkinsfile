@@ -33,7 +33,7 @@ pipeline {
     stage('Build-Docker-Image') {
       steps {
         container('docker') {
-          sh 'docker build -t teslaraj950/testing-image:latest .'
+          sh 'sudo docker build -t teslaraj950/testing-image:latest .'
         }
       }
     }
