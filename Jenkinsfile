@@ -40,7 +40,7 @@ agent {
       steps {
               container('docker') {
         script {
-          build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: '${BUILD_NUMBER}')], wait: true, propagate: true
+          build job: 'updatemanifest', parameters: [string(name: 'DOCKERTAG', value: ${BUILD_NUMBER})], wait: true, propagate: true
         }
               }}
     }
