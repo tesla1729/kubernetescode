@@ -1,13 +1,26 @@
 pipeline {
 agent {
         kubernetes {
-            label 'dind'
-            containerTemplate {
-                name 'docker'
-                image 'docker:dind'
-                privileged true
-                ttyEnabled true
-            }
+            label 'docker'
+            defaultContainer 'docker'
+            yaml """
+            containers:
+            - name: docker
+              image: docker:latest
+              command:
+              - sh
+              - -c
+              - |
+                #!/bin/bash
+                dockerd-entrypoint.sh &
+                sleep 5
+                docker ps -a
+              env:
+              - name: DOCKER_TLS_CERTDIR
+                value: ""
+              securityContext:
+                privileged: true
+            """
         }
     }
   stages {
