@@ -11,6 +11,7 @@ pipeline {
             command:
             - cat
             tty: true
+            privileged: true
             volumeMounts:
              - mountPath: /var/run/docker.sock
                name: docker-sock
