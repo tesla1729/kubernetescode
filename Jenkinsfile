@@ -25,6 +25,15 @@ agent {
             }
          } 
         }
+    stage('Push Docker image') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+          sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+          sh 'docker push teslaraj950/testing-image:${BUILD_NUMBER}'
+          sh 'docker push teslaraj950/testing-image:latest'
+        }
+      }
+    }
     stage('Login-Into-Docker') {
       steps {
         container('docker') {
