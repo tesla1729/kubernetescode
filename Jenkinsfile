@@ -33,10 +33,10 @@ agent {
     }  
     stage('Build') {
        steps {
-               container('docker') {
+              
                 sh 'docker build -t teslaraj950/testing-image:latest -t teslaraj950/testing-image:$BUILD_NUMBER .'
             }
-         } 
+         
         }
     stage('Push Docker image') {
             steps {
