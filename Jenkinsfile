@@ -19,9 +19,11 @@ agent {
       }
     }  
     stage('Build') {
-            steps {
+       steps {
+               container('docker') {
                 sh 'docker build -t testing-image:latest -t testing-image:$BUILD_NUMBER .'
             }
+         } 
         }
     stage('Login-Into-Docker') {
       steps {
