@@ -1,42 +1,29 @@
 pipeline {
 agent {
         kubernetes {
-            label 'docker'
-            defaultContainer 'docker'
-            yaml """
-            containers:
-            - name: docker
-              image: docker:latest
-              command:
-              - sh
-              - -c
-              - |
-                #!/bin/bash
-                dockerd-entrypoint.sh &
-                sleep 5
-                docker ps -a
-              env:
-              - name: DOCKER_TLS_CERTDIR
-                value: ""
-              securityContext:
-                privileged: true
-            """
+            label 'dind'
+            containerTemplate {
+                name 'docker'
+                image 'docker:dind'
+                privileged true
+                ttyEnabled true
+            }
         }
     }
   stages {
     stage('Clone') {
       steps {
-        
+        container('docker') {
           git branch: 'main', changelog: false, poll: false, url: 'https://github.com/tesla1729/kubernetescode.git'
-        
+        }
       }
     }  
     stage('Build') {
        steps {
-              
+               container('docker') {
                 sh 'docker build -t teslaraj950/testing-image:latest -t teslaraj950/testing-image:$BUILD_NUMBER .'
             }
-         
+         } 
         }
     stage('Push Docker image') {
             steps {
