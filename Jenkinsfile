@@ -14,6 +14,7 @@ pipeline {
             steps {
                 // Deployment steps
                 echo "BYE"
+                echo $changeset
             }
         }
     }
