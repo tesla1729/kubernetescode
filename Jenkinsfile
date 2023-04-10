@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Deploy') {
             when {
-                changeset "path/to/your/file"
+                changeset "**/ehr-crud/**"
             }
             steps {
                 // Deployment steps
