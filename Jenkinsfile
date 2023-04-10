@@ -9,12 +9,12 @@ pipeline {
         }
         stage('Deploy') {
             when {
-                changeset "**/ehr-crud/**"
+                changeset "**helm/ehr-crud/**"
             }
             steps {
                 // Deployment steps
                 echo "BYE"
-                echo $changeset
+              
             }
         }
     }
