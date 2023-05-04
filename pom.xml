@@ -1,2 +1,2 @@
-abc\usr\src\lib\yesyeye
-xyz\usr\src\lib\ssww
+awk '{gsub(/\\\\src\\\\lib\\\\/, "/src/lib/")}1' pom.xml  > pom.xml.tmp && mv pom.xml.tmp pom.xml
+awk '{gsub(/\\\\src\\\\lib, "/src/lib")}1' pom.xml  > pom.xml.tmp && mv pom.xml.tmp pom.xml
