@@ -10,11 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.11.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Merge main into develop"
-          base: "develop"
-          title: "Merge main into develop"
-          body: "This pull request merges changes from the main branch into the develop branch."
+      - name: create pull request
+        run: gh pr create -B develop -H main --title 'Merge main into develop' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
