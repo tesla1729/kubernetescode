@@ -3,7 +3,7 @@ name: Create PR from master to develop
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   raise-pr:
