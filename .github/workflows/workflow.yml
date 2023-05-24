@@ -1,4 +1,4 @@
-name: Create PR from master to develop
+name: Merge Main to Develop
 
 on:
   push:
@@ -6,18 +6,17 @@ on:
       - main
 
 jobs:
-  raise-pr:
+  merge:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.11.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Merge master into develop"
-          base: "develop"
-          title: "Merge master into develop"
-          body: "This pull request merges changes from the master branch into the develop branch."
+      - name: Merge Main to Develop
+        run: |
+          git config user.name "tesla1729"
+          git config user.email "your-email@example.com"
+          git checkout develop
+          git merge main --no-ff --no-edit
+          git push origin develop
